@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class EnemyAi : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EnemyAi : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public float enemyHealth;
+    public TextMeshProUGUI healthDisplay;
 
     //Patroling
     public Vector3 walkPoint;
@@ -109,6 +111,8 @@ public class EnemyAi : MonoBehaviour
         {
             Invoke(nameof(DestroyEnemy), 0.5f);
         }
+        if (healthDisplay != null)
+            healthDisplay.SetText(enemyHealth + " Enemy Health");
     }
     private void DestroyEnemy()
     {

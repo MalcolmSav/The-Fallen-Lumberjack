@@ -118,7 +118,7 @@ Rigidbody:
   m_CollisionDetection: 1
 --- !u!96 &984453560886497732
 TrailRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -246,11 +246,14 @@ TrailRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
+  m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 1
+  m_ApplyActiveColorSpace: 0
 --- !u!114 &-1691532315839965633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +276,6 @@ MonoBehaviour:
   explosionDamage: 1
   explosionRange: 10
   explosionForce: 50
-  maxCollisions: 0
-  maxLifetime: 2
+  maxCollisions: 1
+  maxLifetime: 4
   explodeOnTouch: 1
