@@ -13,6 +13,8 @@ public class EnemyAi : MonoBehaviour
 
     public float enemyHealth;
     public TextMeshProUGUI healthDisplay;
+    public TextMeshPro ehealthDisplay;
+    public TextMesh eehealth;
 
     //Patroling
     public Vector3 walkPoint;
@@ -106,13 +108,18 @@ public class EnemyAi : MonoBehaviour
     public void TakeDamage(int damage)
     {
         enemyHealth -= damage;
+        //ehealthDisplay -= damage;
         Debug.Log("EnemyHealth: " + enemyHealth);
         if (enemyHealth <= 0)
         {
             Invoke(nameof(DestroyEnemy), 0.5f);
         }
         if (healthDisplay != null)
-            healthDisplay.SetText(enemyHealth + " Enemy Health");
+        {
+            healthDisplay.SetText(enemyHealth + " Enemy Health1");
+            ehealthDisplay.SetText(enemyHealth + " hp");
+            
+        }
     }
     private void DestroyEnemy()
     {
