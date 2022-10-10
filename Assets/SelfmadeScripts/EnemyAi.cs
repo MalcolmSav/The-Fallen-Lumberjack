@@ -113,6 +113,8 @@ public class EnemyAi : MonoBehaviour
         if (enemyHealth <= 0)
         {
             Invoke(nameof(DestroyEnemy), 0.5f);
+            Destroy(this.healthDisplay);
+            Destroy(ehealthDisplay);
         }
         if (healthDisplay != null)
         {
@@ -120,6 +122,7 @@ public class EnemyAi : MonoBehaviour
             ehealthDisplay.SetText(enemyHealth + " hp");
             
         }
+
     }
     private void DestroyEnemy()
     {
