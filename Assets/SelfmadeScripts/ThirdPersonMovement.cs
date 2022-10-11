@@ -87,6 +87,13 @@ public class ThirdPersonMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+        if (Input.GetKey(jumpKey) && readyToJump)
+        {    
+            readyToJump = false; 
+            Blink();
+            Invoke(nameof(ResetJump), jumpCooldown+1);
+        }
+    
     }
 
     private void MovePlayer()
@@ -121,7 +128,11 @@ public class ThirdPersonMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        rb.AddForce(transform.forward * jumpForce, ForceMode.Impulse);
+        // rb.AddForce(transform.forward * jumpForce, ForceMode.Impulse);
+    }
+    private void Blink()
+    {
+        rb.AddForce(transform.forward * 2000f, ForceMode.Impulse);
     }
     private void ResetJump()
     {
