@@ -13,6 +13,11 @@ public class PlayerStats : MonoBehaviour
 
     public TextMeshProUGUI healthDisplay;
 
+    private void Start()
+    {
+        healthDisplay.SetText(playerHealth + " Health");
+    }
+
 
     public void TakeDamage(int damage)
     {

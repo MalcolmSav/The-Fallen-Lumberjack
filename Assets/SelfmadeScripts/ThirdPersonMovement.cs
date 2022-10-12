@@ -56,13 +56,7 @@ public class ThirdPersonMovement : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            Debug.Log("key clicked -- chop = true");
-            anim.SetBool("jump", true);
-        }
-        else
-            anim.SetBool("jump", false);
+
 
         anim.SetFloat("vertical", Input.GetAxis("Vertical"));
         anim.SetFloat("horizontal", Input.GetAxis("Horizontal"));
@@ -79,6 +73,14 @@ public class ThirdPersonMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
+        if (Input.GetKey(jumpKey) && Input.GetKey("d") && readyToJump)
+        {    
+            readyToJump = false; 
+            anim.SetBool("jump", true);
+            Blink();
+            Invoke(nameof(ResetJump), jumpCooldown+1);
+        }
+    
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
@@ -87,13 +89,6 @@ public class ThirdPersonMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
-        if (Input.GetKey(jumpKey) && readyToJump)
-        {    
-            readyToJump = false; 
-            Blink();
-            Invoke(nameof(ResetJump), jumpCooldown+1);
-        }
-    
     }
 
     private void MovePlayer()
@@ -117,8 +112,8 @@ public class ThirdPersonMovement : MonoBehaviour
         // limit velocity if needed
         if (flatVel.magnitude > moveSpeed)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            // Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            // rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
 
@@ -132,7 +127,8 @@ public class ThirdPersonMovement : MonoBehaviour
     }
     private void Blink()
     {
-        rb.AddForce(transform.forward * 2000f, ForceMode.Impulse);
+        rb.AddForce(transform.up * 10f, ForceMode.Impulse);
+        rb.AddForce(transform.right * 400f, ForceMode.Impulse);
     }
     private void ResetJump()
     {

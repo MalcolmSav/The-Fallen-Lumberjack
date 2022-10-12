@@ -17,9 +17,10 @@ public class ThirdPersonCam : MonoBehaviour
     public GameObject thirdPersonCam;
     public GameObject combatCam;
     public GameObject topDownCam;
-
+    private bool invopen;
     public CameraStyle currentStyle;
     public enum CameraStyle
+    
     {
         Basic,
         Combat,
@@ -30,14 +31,11 @@ public class ThirdPersonCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        invopen = false;
     }
 
     private void Update()
     {
-        // switch styles
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
 
         // rotate orientation
 
@@ -66,7 +64,18 @@ public class ThirdPersonCam : MonoBehaviour
 
             playerObj.forward = dirToCombatLookAt.normalized;
         }
+
+        if(invopen == true)
+        Start();
+        if(Input.GetKey(KeyCode.Tab))
+        {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        invopen = true;
+        }
+        
     }
+
 
     private void SwitchCameraStyle(CameraStyle newStyle)
     {
