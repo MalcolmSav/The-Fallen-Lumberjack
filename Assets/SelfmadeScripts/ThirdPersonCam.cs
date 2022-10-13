@@ -17,7 +17,7 @@ public class ThirdPersonCam : MonoBehaviour
     public GameObject thirdPersonCam;
     public GameObject combatCam;
     public GameObject topDownCam;
-    private bool invopen;
+    public bool invopen;
     public CameraStyle currentStyle;
     public enum CameraStyle
     
@@ -65,28 +65,19 @@ public class ThirdPersonCam : MonoBehaviour
             playerObj.forward = dirToCombatLookAt.normalized;
         }
 
-        if(invopen == true)
-        Start();
-        if(Input.GetKey(KeyCode.Tab))
+        if (Input.GetKey(KeyCode.Tab) && invopen == false)
         {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         invopen = true;
         }
-        
+        else if (Input.GetKey(KeyCode.Tab))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            invopen = false;
+        }
+
     }
 
-
-    private void SwitchCameraStyle(CameraStyle newStyle)
-    {
-        combatCam.SetActive(false);
-        thirdPersonCam.SetActive(false);
-        topDownCam.SetActive(false);
-
-        if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true);
-        if (newStyle == CameraStyle.Combat) combatCam.SetActive(true);
-        if (newStyle == CameraStyle.Topdown) topDownCam.SetActive(true);
-
-        currentStyle = newStyle;
-    }
 }

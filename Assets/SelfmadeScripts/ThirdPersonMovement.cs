@@ -76,7 +76,7 @@ public class ThirdPersonMovement : MonoBehaviour
         if (Input.GetKey(jumpKey) && Input.GetKey("d") && readyToJump)
         {    
             readyToJump = false; 
-            anim.SetBool("jump", true);
+            //anim.SetBool("jump", true);
             Blink();
             Invoke(nameof(ResetJump), jumpCooldown+1);
         }
