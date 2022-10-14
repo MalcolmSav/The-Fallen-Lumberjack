@@ -37,10 +37,10 @@ public class PickUpWep : MonoBehaviour
     {
         //Check if player is in range and "E" is pressed
         Vector3 distanceToPlayer = player.position - transform.position;
-        if (!equipped && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull) 
+        if (!equipped && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.F) && !slotFull) 
             PickUp();
 
-        if (equipped && Input.GetKeyDown(KeyCode.Q)) Drop();
+        else if (equipped && Input.GetKeyDown(KeyCode.F)) Drop();
     }
 
     private void PickUp()
