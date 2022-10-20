@@ -5,19 +5,28 @@ using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
-    /*public Transform Enemyplayer;
-    */
+    public static PlayerStats Instance;
     public LayerMask whatIsGround, whatIsEnemy;
 
     public float playerHealth;
 
     public TextMeshProUGUI healthDisplay;
 
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         healthDisplay.SetText(playerHealth + " Health");
     }
 
+    public void IncreaseHealth(float value)
+    {
+        playerHealth += value;
+        healthDisplay.SetText(playerHealth + " Health");
+    }
 
     public void TakeDamage(int damage)
     {

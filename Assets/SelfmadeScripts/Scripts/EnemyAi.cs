@@ -14,7 +14,6 @@ public class EnemyAi : MonoBehaviour
     public float enemyHealth;
     public TextMeshProUGUI healthDisplay;
     public TextMeshPro ehealthDisplay;
-    public TextMesh eehealth;
 
     //Patroling
     public Vector3 walkPoint;
@@ -36,6 +35,7 @@ public class EnemyAi : MonoBehaviour
 
     private void Awake()
     {
+        ehealthDisplay.SetText(enemyHealth + " hp");
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -108,7 +108,6 @@ public class EnemyAi : MonoBehaviour
     public void TakeDamage(int damage)
     {
         enemyHealth -= damage;
-        //ehealthDisplay -= damage;
         Debug.Log("EnemyHealth: " + enemyHealth);
         if (enemyHealth <= 0)
         {
@@ -116,11 +115,10 @@ public class EnemyAi : MonoBehaviour
             Destroy(this.healthDisplay);
             Destroy(ehealthDisplay);
         }
-        if (healthDisplay != null)
+        if (enemyHealth > 0)
         {
-            healthDisplay.SetText(enemyHealth + " Enemy Health1");
-            ehealthDisplay.SetText(enemyHealth + " hp");
-            
+            healthDisplay.SetText(enemyHealth + " Enemy Health");
+            ehealthDisplay.SetText(enemyHealth + " hp");      
         }
 
     }
