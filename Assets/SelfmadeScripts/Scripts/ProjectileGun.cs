@@ -40,9 +40,9 @@ public class ProjectileGun : MonoBehaviour
     public GameObject muzzleFlash;
     public TextMeshProUGUI ammunitionDisplay;
 
-    //bug fixing :D
     public bool allowInvoke = true;
 
+    Animator anim;
     private void Awake()
     {
         //make sure magazine is full
@@ -61,8 +61,8 @@ public class ProjectileGun : MonoBehaviour
     private void MyInput()
     {
         //Check if allowed to hold down button and take corresponding input
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+        if (allowButtonHold) shooting = Input.GetKey("return");
+        else shooting = Input.GetKeyDown("return");
 
         //Reloading 
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
@@ -74,14 +74,17 @@ public class ProjectileGun : MonoBehaviour
         {
             //Set bullets shot to 0
             bulletsShot = 0;
-
+            //anim.Play("Attack");
             Shoot();
+            
         }
-    }
 
+
+    }
     private void Shoot()
     {
         readyToShoot = false;
+
 
         //Find the exact hit position using a raycast
         Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); //Just a ray through the middle of your current view 
@@ -133,6 +136,7 @@ public class ProjectileGun : MonoBehaviour
         //if more than one bulletsPerTap make sure to repeat shoot function
         if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
             Invoke("Shoot", timeBetweenShots);
+
     }
     private void ResetShot()
     {

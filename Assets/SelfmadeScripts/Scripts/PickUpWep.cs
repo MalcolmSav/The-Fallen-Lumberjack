@@ -9,6 +9,7 @@ public class PickUpWep : MonoBehaviour
     public Rigidbody rb;
     public BoxCollider coll;
     public Transform player, gunContainer, fpscam;
+    //public Item Item;
 
     public float pickUpRange;
     public float dropForwardForce, dropUpwardForce;
@@ -35,7 +36,7 @@ public class PickUpWep : MonoBehaviour
     }
     private void Update()
     {
-        //Check if player is in range and "E" is pressed
+        //Check if player is in range and "F" is pressed
         Vector3 distanceToPlayer = player.position - transform.position;
         if (!equipped && distanceToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.F) && !slotFull) 
             PickUp();
@@ -47,7 +48,7 @@ public class PickUpWep : MonoBehaviour
     {
         equipped = true;
         slotFull = true;
-
+        //InventoryManager.Instance.Add(Item);
         //Make new wep a child of the camera and moves it to the player
         transform.SetParent(gunContainer);
         transform.localPosition = Vector3.zero;

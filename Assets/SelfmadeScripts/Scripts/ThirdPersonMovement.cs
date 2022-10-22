@@ -30,6 +30,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     float horizontalInput;
     float verticalInput;
+    private bool isJumping;
 
     Vector3 moveDirection;
 
@@ -71,25 +72,22 @@ public class ThirdPersonMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
         // when to jump
-        if (Input.GetKey(jumpKey) && Input.GetKey("d") && readyToJump)
-        {    
-            readyToJump = false; 
-            //anim.SetBool("jump", true);
-            Blink();
-            Invoke(nameof(ResetJump), jumpCooldown+1);
-        }
-    
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+
+        if (Input.GetKey(KeyCode.Space) && readyToJump && grounded)
         {
             readyToJump = false;
-
+            anim.Play("Jump");
             Jump();
-
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
+        if (Input.GetKey("return"))
+            anim.Play("Attack");
+
+
     }
+  
 
     private void MovePlayer()
     {
@@ -99,7 +97,6 @@ public class ThirdPersonMovement : MonoBehaviour
         // on ground
         if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-
         // in air
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
@@ -119,7 +116,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private void Jump()
     {
-        //eset y velocity
+        //reset y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
