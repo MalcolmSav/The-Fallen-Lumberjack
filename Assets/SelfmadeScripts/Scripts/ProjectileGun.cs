@@ -38,7 +38,8 @@ public class ProjectileGun : MonoBehaviour
 
     //Graphics
     public GameObject muzzleFlash;
-    public TextMeshProUGUI ammunitionDisplay;
+    public TextMeshProUGUI ammunitionDisplay, reloadDisplay;
+    public GameObject ReloadContainer;
 
     public bool allowInvoke = true;
 
@@ -149,11 +150,15 @@ public class ProjectileGun : MonoBehaviour
     {
         reloading = true;
         Invoke("ReloadFinished", reloadTime); //Invoke ReloadFinished function with your reloadTime as delay
+        ReloadContainer.SetActive(true);
+        reloadDisplay.SetText("Reloading..");
     }
     private void ReloadFinished()
     {
         //Fill magazine
         bulletsLeft = magazineSize;
+        reloadDisplay.SetText("Reload Done!");
         reloading = false;
+        ReloadContainer.SetActive(false);
     }
 }

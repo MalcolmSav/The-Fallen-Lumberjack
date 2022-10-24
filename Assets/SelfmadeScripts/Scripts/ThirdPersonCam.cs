@@ -44,7 +44,7 @@ public class ThirdPersonCam : MonoBehaviour
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         //if (inputDir != Vector3.zero)
-            // orientation.forward = player.position - transform.position;
+            //orientation.forward = player.position - transform.position;
        
         // rotate player object
         if (currentStyle == CameraStyle.Basic || currentStyle == CameraStyle.Topdown)
@@ -55,6 +55,7 @@ public class ThirdPersonCam : MonoBehaviour
 
             if (inputDir != Vector3.zero)
                 playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+                orientation.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
 
         else if (currentStyle == CameraStyle.Combat)
@@ -67,9 +68,9 @@ public class ThirdPersonCam : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Tab) && invopen == false)
         {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        invopen = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            invopen = true;
         }
         else if (Input.GetKey(KeyCode.Tab))
         {
