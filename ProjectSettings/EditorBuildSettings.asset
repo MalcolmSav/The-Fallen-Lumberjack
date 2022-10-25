@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SelfmadeScripts/Scenes/Menu.unity
+    path: Assets/Selfmade/Scenes/Menu.unity
     guid: 4406b197351c5324990d9a0203e67444
   - enabled: 1
-    path: Assets/SelfmadeScripts/Scenes/RoomRunnerGame.unity
+    path: Assets/Selfmade/Scenes/RoomRunnerGame.unity
     guid: 4ffc2a64e5191e74e8bc8ad79d6dff33
+  - enabled: 1
+    path: Assets/Selfmade/Scenes/WinMenu.unity
+    guid: 3b3a0fb1d15761944a807d5d38754d62
+  - enabled: 1
+    path: Assets/Selfmade/Scenes/LoseMenu.unity
+    guid: 70cc0397f57ce90489dfec9877801301
   m_configObjects: {}
