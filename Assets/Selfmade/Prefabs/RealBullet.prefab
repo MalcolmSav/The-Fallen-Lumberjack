@@ -136,7 +136,7 @@ MonoBehaviour:
   bounciness: 0.614
   useGravity: 1
   explosionDamage: 25
-  explosionRange: 15
+  explosionRange: 5
   explosionForce: 300
   maxCollisions: 2
   maxLifetime: 1

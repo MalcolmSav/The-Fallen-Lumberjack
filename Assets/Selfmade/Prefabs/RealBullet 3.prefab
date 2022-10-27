@@ -139,7 +139,7 @@ MonoBehaviour:
   explosionRange: 10
   explosionForce: 300
   maxCollisions: 0
-  maxLifetime: 1
+  maxLifetime: 0.3
   explodeOnTouch: 1
 --- !u!96 &984453560886497732
 TrailRenderer:
@@ -149,7 +149,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3635385922675623429}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

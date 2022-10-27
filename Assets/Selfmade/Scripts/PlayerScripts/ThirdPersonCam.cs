@@ -17,7 +17,7 @@ public class ThirdPersonCam : MonoBehaviour
     public GameObject thirdPersonCam;
     public GameObject combatCam;
     public GameObject topDownCam;
-    public bool invopen;
+    public bool invopen, paused;
     public CameraStyle currentStyle;
     public enum CameraStyle
     
@@ -59,6 +59,8 @@ public class ThirdPersonCam : MonoBehaviour
         {
             Invoke("LockMouse", 1);
         }
+            
+        
     }
 
     private void FreeMouse()
