@@ -1,5 +1,5 @@
 # The-Fallen-Lumberjack
-Game created from the course TDDD23
+Game created for the course TDDD23
 
 -Third person
 -Inventory system
