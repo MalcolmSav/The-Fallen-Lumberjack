@@ -1,5 +1,5 @@
 # The-Fallen-Lumberjack
-Game created for the course TDDD23
+Game created for the course TDDD23 by Malcolm Sävmarker
 
 -Third person
 -Animated movement
